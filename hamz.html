@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>موقعي الاحترافي | خدمات متكاملة</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --secondary: #0f172a;
+            --accent: #38bdf8;
+            --bg-light: #f8fafc;
+            --white: #ffffff;
+            --text-main: #334155;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        /* --- الهيدر --- */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--secondary);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+
+        /* --- قسم الهيرو --- */
+        .hero {
+            padding: 100px 10%;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary-dark) 100%);
+            color: white;
+            text-align: center;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .btn-main {
+            padding: 15px 40px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .btn-main:hover {
+            background: transparent;
+            border-color: white;
+            transform: translateY(-5px);
+        }
+
+        /* --- العناوين المشتركة --- */
+        .section-title {
+            text-align: center;
+            margin: 60px 0 40px;
+            font-size: 2rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        /* --- معرض الأعمال --- */
+        .portfolio-grid {
+            padding: 0 10%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 80px;
+        }
+
+        .portfolio-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            height: 250px;
+            background: #e2e8f0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(37, 99, 235, 0.9);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            opacity: 0;
+            transition: var(--transition);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .portfolio-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* --- نموذج الاتصال --- */
+        .contact-container {
+            background: var(--white);
+            max-width: 800px;
+            margin: 0 auto 80px;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            outline: none;
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 15px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-submit:hover {
+            background: var(--primary-dark);
+        }
+
+        /* --- الفوتر --- */
+        footer {
+            background: var(--secondary);
+            color: white;
+            padding: 40px 10%;
+            text-align: center;
+        }
+
+        .social-links {
+            margin-bottom: 20px;
+        }
+
+        .social-links a {
+            color: white;
+            margin: 0 10px;
+            text-decoration: none;
+            opacity: 0.7;
+        }
+
+        /* --- التجاوب مع الجوال --- */
+        @media (max-width: 768px) {
+            nav { display: none; }
+            header { justify-content: center; }
+            .hero { padding: 60px 5%; }
+            .contact-container { margin: 0 20px 60px; padding: 25px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo">إبداع الرقمية</a>
+        <nav>
+            <ul>
+                <li><a href="#">الرئيسية</a></li>
+                <li><a href="#portfolio">أعمالنا</a></li>
+                <li><a href="#contact">تواصل معنا</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>حوّل فكرتك إلى واقع رقمي مبهر</h1>
+        <p>نحن نصمم ونطور تجارب رقمية استثنائية تساعد علامتك التجارية على التألق والنمو في سوق المنافسة.</p>
+        <a href="#portfolio" class="btn-main">استعرض أعمالنا</a>
+    </section>
+
+    <main>
+        <h2 class="section-title" id="portfolio">معرض الأعمال</h2>
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <div style="background:#ddd; height:100%; width:100%; display:flex; align-items:center; justify-content:center;">صورة المشروع 1</div>
+                <div class="portfolio-overlay">
+                    <h3>متجر إلكتروني</h3>
+                    <p>تصميم واجهة مستخدم كاملة لمتجر أزياء</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <div style="background:#ccc; height:100%; width:100%; display:flex; align-items:center; justify-content:center;">صورة المشروع 2</div>
+                <div class="portfolio-overlay">
+                    <h3>تطبيق توصيل</h3>
+                    <p>تطوير تطبيق جوال متكامل</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <div style="background:#bbb; height:100%; width:100%; display:flex; align-items:center; justify-content:center;">صورة المشروع 3</div>
+                <div class="portfolio-overlay">
+                    <h3>موقع شركة</h3>
+                    <p>بناء موقع تعريفي لشركة عقارات</p>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title" id="contact">تواصل معنا</h2>
+        <div class="contact-container">
+            <form action="https://formspree.io/f/YOUR_EMAIL_HERE" method="POST">
+                <div class="form-group">
+                    <label>الاسم بالكامل</label>
+                    <input type="text" name="name" placeholder="أدخل اسمك هنا" required>
+                </div>
+                <div class="form-group">
+                    <label>البريد الإلكتروني</label>
+                    <input type="email" name="email" placeholder="example@mail.com" required>
+                </div>
+                <div class="form-group">
+                    <label>الرسالة</label>
+                    <textarea name="message" placeholder="كيف يمكننا مساعدتك؟" required></textarea>
+                </div>
+                <button type="submit" class="btn-submit">إرسال الطلب</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <div class="social-links">
+            <a href="#">لينكد إن</a> | <a href="#">تويتر</a> | <a href="#">إنستغرام</a>
+        </div>
+        <p>جميع الحقوق محفوظة &copy; 2026 | صمم بواسطة "إبداع الرقمية"</p>
+    </footer>
+
+</body>
+</html>
